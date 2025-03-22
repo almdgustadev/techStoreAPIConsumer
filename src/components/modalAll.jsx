@@ -8,7 +8,7 @@ import Save from '../assets/icons8-save-24.png'
 
 export default function ModalAll({isOpenModalAll,setModalOPen, produto}) {
     const[produtoEditando, setProdutoEditando] = useState(null)
-    const[valoresEditados, setValoresEditados] = useState(null)
+    const[valoresEditados, setValoresEditados] = useState({})
 
     async function deleteProdutos(codigo){
         await api.delete(`/techstore/produtos/${codigo}`);
@@ -32,6 +32,16 @@ export default function ModalAll({isOpenModalAll,setModalOPen, produto}) {
             [campo]: valor,
         }));
     };
+
+    const iniciarEdicao = (prod) => {
+        setProdutoEditando(prod);         
+        setValoresEditados({ 
+            nome: prod.nome,
+            descricao: prod.descricao,
+            preco: prod.preco,
+            quantidadeEstoque: prod.quantidadeEstoque,
+        });
+    };
     
 
 
@@ -52,7 +62,7 @@ export default function ModalAll({isOpenModalAll,setModalOPen, produto}) {
                                         {produtoEditando?.codigo === prod.codigo ? (
                                             <input
                                                 type="text"
-                                                defaultValue={prod.nome}
+                                                value={valoresEditados.nome || ''}
                                                 onChange={(e) => handleInputChange('nome', e.target.value)}
                                             />
                                         ) : (
@@ -64,7 +74,7 @@ export default function ModalAll({isOpenModalAll,setModalOPen, produto}) {
                                         {produtoEditando?.codigo === prod.codigo ? (
                                             <input
                                                 type="text"
-                                                defaultValue={prod.descricao}
+                                                value={valoresEditados.descricao || ''}
                                                 onChange={(e) => handleInputChange('descricao', e.target.value)}
                                             />
                                         ) : (
@@ -76,7 +86,7 @@ export default function ModalAll({isOpenModalAll,setModalOPen, produto}) {
                                         {produtoEditando?.codigo === prod.codigo ? (
                                             <input
                                                 type="number"
-                                                defaultValue={prod.preco}
+                                                value={valoresEditados.preco || ''}
                                                 onChange={(e) => handleInputChange('preco', e.target.value)}
                                             />
                                         ) : (
@@ -88,7 +98,7 @@ export default function ModalAll({isOpenModalAll,setModalOPen, produto}) {
                                         {produtoEditando?.codigo === prod.codigo ? (
                                             <input
                                                 type="number"
-                                                defaultValue={prod.quantidadeEstoque}
+                                                value={valoresEditados.quantidadeEstoque || ''}
                                                 onChange={(e) => handleInputChange('quantidadeEstoque', e.target.value)}
                                             />
                                         ) : (
@@ -103,7 +113,7 @@ export default function ModalAll({isOpenModalAll,setModalOPen, produto}) {
                                             <img src={Save} alt="Salvar" />
                                         </button>
                                     ) : (
-                                        <button onClick={() => setProdutoEditando(prod)}>
+                                        <button onClick={() => iniciarEdicao(prod)}>
                                             <img src={Edit} alt="Editar" />
                                         </button>
                                     )}
