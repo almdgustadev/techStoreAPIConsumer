@@ -1,0 +1,71 @@
+.background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal{
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 500px; 
+  max-height: 90vh;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modalContent {
+    color: rgb(0, 0, 0); 
+    text-align: center; 
+}
+
+.modalContent h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+.modalBody {
+    text-align: left; 
+    margin-bottom: 20px;
+    overflow-y: auto;
+    max-height: 60vh;
+    
+}
+  
+.modalBody p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+  
+  
+.modalClose {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+  
+.modalClose:hover {
+    background-color: #ff1a1a;
+    opacity: 0.6;
+}
+
+.produtoItem {
+    margin-bottom: 15px;
+}
+  
+.produtoItem hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0;
+}
